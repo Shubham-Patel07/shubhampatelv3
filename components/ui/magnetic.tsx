@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
  */
 export function Magnetic({
   children,
-  strength = 0.35,
+  strength = 0.18,
   className,
 }: {
   children: ReactNode;

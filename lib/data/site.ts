@@ -10,7 +10,7 @@ export const siteConfig = {
   location: "India",
   timezoneLabel: "IST · UTC+5:30",
   timezone: "Asia/Kolkata",
-  email: "shubham2107patel@gmail.com", // [verify] preferred contact address
+  email: "shubham.patel.workx@gmail.com",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://shubhampatel.dev",
   githubUsername: "Shubham-Patel07",
 } as const;
@@ -43,10 +43,9 @@ export const socials: Social[] = [
     icon: "github",
   },
   {
-    // [verify] LinkedIn vanity URL
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/shubham-patel",
-    handle: "in/shubham-patel",
+    href: "https://www.linkedin.com/in/shubham2107patel",
+    handle: "in/shubham2107patel",
     icon: "linkedin",
   },
   {
