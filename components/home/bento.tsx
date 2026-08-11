@@ -60,18 +60,30 @@ export function Bento() {
           </BentoCard>
         </Reveal>
 
-        {/* Globe */}
+        {/* Globe — bottom-anchored half globe */}
         <Reveal className="md:col-span-2" delay={0.05}>
-          <BentoCard className="flex h-full flex-col">
-            <CardLabel>location</CardLabel>
-            <div className="relative flex flex-1 items-center justify-center py-4">
-              <Globe />
-            </div>
-            <div>
-              <p className="font-display text-lg font-semibold">Based in India</p>
+          <BentoCard className="relative flex h-full min-h-[17rem] flex-col overflow-hidden">
+            <div className="relative z-10">
+              <CardLabel>location</CardLabel>
+              <p className="mt-4 font-display text-lg font-semibold">
+                Based in India
+              </p>
               <p className="font-mono text-xs text-faint">
                 working across timezones · drag to spin
               </p>
+            </div>
+
+            {/* soft glow under the globe */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -bottom-10 left-1/2 h-40 w-[110%] -translate-x-1/2 rounded-[100%] opacity-70 blur-2xl"
+              style={{
+                background:
+                  "radial-gradient(circle, color-mix(in oklab, var(--accent) 22%, transparent), transparent 70%)",
+              }}
+            />
+            <div className="absolute bottom-0 left-1/2 aspect-square w-[125%] -translate-x-1/2 translate-y-[38%]">
+              <Globe />
             </div>
           </BentoCard>
         </Reveal>
