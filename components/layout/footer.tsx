@@ -64,7 +64,7 @@ export function Footer() {
                     rel="noopener noreferrer"
                     className="group inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
                   >
-                    <Icon className="size-4" />
+                    <Icon className="size-4 shrink-0" />
                     {social.label}
                   </a>
                 </li>

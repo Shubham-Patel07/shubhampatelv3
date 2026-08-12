@@ -81,14 +81,16 @@ export function ContactForm() {
         <button
           type="button"
           onClick={copyEmail}
-          className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2.5 font-mono text-xs text-muted transition-colors hover:border-border-strong hover:text-foreground"
+          className="inline-flex max-w-full items-center gap-2 rounded-full border border-border px-4 py-2.5 font-mono text-xs text-muted transition-colors hover:border-border-strong hover:text-foreground"
         >
           {copied ? (
-            <Check className="size-3.5 text-accent" />
+            <Check className="size-3.5 shrink-0 text-accent" />
           ) : (
-            <Copy className="size-3.5" />
+            <Copy className="size-3.5 shrink-0" />
           )}
-          {copied ? "copied" : siteConfig.email}
+          <span className="truncate">
+            {copied ? "copied" : siteConfig.email}
+          </span>
         </button>
       </div>
 

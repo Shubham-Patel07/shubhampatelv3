@@ -52,14 +52,16 @@ export default function ContactPage() {
                       rel={external ? "noopener noreferrer" : undefined}
                       className="group flex items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-surface-2"
                     >
-                      <Icon className="size-4 text-muted transition-colors group-hover:text-accent" />
-                      <span className="text-sm text-foreground">
+                      {/* See bento.tsx — shrink-0 keeps a long handle from
+                          squashing the icon. */}
+                      <Icon className="size-4 shrink-0 text-muted transition-colors group-hover:text-accent" />
+                      <span className="shrink-0 text-sm text-foreground">
                         {social.label}
                       </span>
-                      <span className="ml-auto hidden font-mono text-xs text-faint sm:inline">
+                      <span className="ml-auto hidden min-w-0 truncate font-mono text-xs text-faint sm:inline">
                         {social.handle}
                       </span>
-                      <ArrowUpRight className="size-3.5 text-faint transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      <ArrowUpRight className="size-3.5 shrink-0 text-faint transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </a>
                   );
                 })}
