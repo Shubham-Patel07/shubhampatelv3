@@ -72,6 +72,10 @@ steps are chosen against the dark surface, not an inversion of the light ones.
   is the on-brand stub used for routes whose phase hasn't landed yet.
 - Facts that aren't verified yet are marked `[verify]` in a comment next to the
   value. Don't invent metrics — leave the marker.
+- `AuroraBackground` carries `mask-b-faded` for a reason: its parent clips with
+  `overflow-hidden`, and in a short container the blob is still bright when it
+  gets cut, leaving a hard horizontal line under the heading. Don't remove it,
+  and keep the fade if you add another backdrop.
 
 ## Phase 5 notes
 
