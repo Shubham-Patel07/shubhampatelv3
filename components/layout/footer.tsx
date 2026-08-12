@@ -15,8 +15,12 @@ export function Footer() {
 
   return (
     <footer className="relative mt-24 border-t border-border">
-      <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-[1.5fr_1fr_1fr]">
-        <div>
+      {/* Follows the nav's ladder: the three-column desktop footer starts at lg,
+          the same width the desktop nav does. Switching it at md left a
+          hamburger header sitting above a desktop footer, with the columns
+          clustered left and dead space on the right. */}
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:grid-cols-2 sm:gap-12 lg:grid-cols-[1.5fr_1fr_1fr]">
+        <div className="sm:col-span-2 lg:col-span-1">
           <Link
             href="/"
             className="font-mono text-sm font-medium text-foreground"
