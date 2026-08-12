@@ -16,9 +16,30 @@ phase numbering is written down.
 | 3 | Home page — hero, selected work, bento, writing teaser, CTA, globe | done |
 | 4 | Projects index + case studies | done — metrics still `[verify]` |
 | 5 | About & Contact | done — timeline content still `[verify]` |
-| 6 | Writing (MDX blog) | todo |
+| 6 | Writing (MDX blog) | done — no real posts yet |
 | 7a | Dashboard — live GitHub stats + contribution graph | done |
 | 7b | Contributions page | todo |
+
+## Phase 6 notes — writing / MDX
+
+Posts are `.mdx` files in `content/writing/`. Adding a file publishes it; there
+is no list to register it in. Frontmatter: `title`, `summary`, `date`, `tag`,
+`draft`. Reading time is computed from the body, never authored.
+
+`draft: true` hides a post from the index and from the home teaser, but the URL
+still resolves (so a draft link is shareable) and `generateMetadata` marks it
+`noindex`.
+
+**`remark-frontmatter` is required, not cosmetic.** MDX has no concept of
+frontmatter on its own: the `---` fences compile to a horizontal rule and the
+YAML keys render as body text at the top of every post. `gray-matter` reads the
+block for metadata; the remark plugin is what removes it from the article.
+
+Turbopack serializes the MDX config to Rust, so remark/rehype plugins must be
+named as **strings** in `next.config.ts` — an imported function will not work.
+
+`content/writing/sample-post.mdx` is a scaffold documenting the format, kept as
+a draft so it never appears publicly. Delete it once real posts exist.
 
 ## Lenis / scrolling
 

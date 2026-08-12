@@ -1,0 +1,57 @@
+---
+title: "Sample post — delete me once you've written a real one"
+summary: "A scaffold showing every piece of formatting the blog supports. Marked as a draft, so it never appears on the public index."
+date: "2026-08-12"
+tag: "Meta"
+draft: true
+---
+
+This file exists to prove the writing pipeline works end to end and to show the
+formatting available. It is marked `draft: true` in its frontmatter, so it is
+hidden from `/writing` and reachable only by its direct URL.
+
+**Replace it with your own writing.** Delete this file, add
+`content/writing/your-slug.mdx`, and it appears on the index automatically —
+there is no list to register it in.
+
+## How a post is structured
+
+Every post needs frontmatter at the top:
+
+```mdx
+---
+title: "Designing SLOs that actually page you"
+summary: "One or two sentences — this is what shows on the index card."
+date: "2026-08-20"
+tag: "SRE"
+draft: false
+---
+```
+
+`date` drives the ordering (newest first), `tag` drives the filter on the index,
+and reading time is calculated from the body — you never set it by hand.
+
+## What you can write
+
+Standard markdown works: **bold**, *italic*, `inline code`, and
+[links](https://nextjs.org). Lists are styled too:
+
+- Bullets take an accent marker
+- Nesting and ordered lists both work
+- Code blocks scroll horizontally rather than stretching the page
+
+> Blockquotes are available for pulling out a key line.
+
+Because these are MDX files rather than plain markdown, you can also import and
+use React components inline when a post needs a diagram or an interactive bit.
+
+```ts
+// Code blocks are syntax-plain but properly monospaced and scrollable.
+export function burnRate(errors: number, total: number, budget: number) {
+  return errors / total / budget;
+}
+```
+
+---
+
+That's the whole format. Write the post, drop it in the folder, done.

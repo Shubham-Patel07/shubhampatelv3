@@ -2,16 +2,15 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
-import { Badge } from "@/components/ui/badge";
-
-// Planned pieces — clearly labeled as upcoming until the MDX blog ships (Phase 6).
-const upcoming = [
-  { title: "Designing SLOs that actually page you", tag: "SRE" },
-  { title: "Kubernetes observability from first principles", tag: "Observability" },
-  { title: "Taming cloud infra with reusable Terraform modules", tag: "DevOps" },
-];
+import { PostCard, PlannedCard } from "@/components/writing/post-card";
+import { getPosts } from "@/lib/writing";
+import { plannedPosts } from "@/lib/data/writing-plan";
 
 export function WritingTeaser() {
+  // Real posts lead; planned titles fill the row only while there aren't three.
+  const posts = getPosts().slice(0, 3);
+  const planned = plannedPosts.slice(0, Math.max(0, 3 - posts.length));
+
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
       <SectionHeading
@@ -29,20 +28,14 @@ export function WritingTeaser() {
       />
 
       <div className="grid gap-4 md:grid-cols-3">
-        {upcoming.map((post, i) => (
-          <Reveal key={post.title} delay={i * 0.08}>
-            <div className="group flex h-full flex-col rounded-2xl border border-border bg-surface/40 p-6 transition-colors hover:border-border-strong">
-              <div className="flex items-center justify-between">
-                <Badge>{post.tag}</Badge>
-                <span className="font-mono text-xs text-faint">soon</span>
-              </div>
-              <h3 className="mt-4 font-display text-lg font-semibold leading-snug">
-                {post.title}
-              </h3>
-              <p className="mt-auto pt-6 font-mono text-xs text-faint">
-                draft in progress
-              </p>
-            </div>
+        {posts.map((post, i) => (
+          <Reveal key={post.slug} delay={i * 0.08}>
+            <PostCard post={post} />
+          </Reveal>
+        ))}
+        {planned.map((post, i) => (
+          <Reveal key={post.title} delay={(posts.length + i) * 0.08}>
+            <PlannedCard title={post.title} tag={post.tag} />
           </Reveal>
         ))}
       </div>
