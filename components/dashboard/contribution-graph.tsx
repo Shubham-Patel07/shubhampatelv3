@@ -76,8 +76,15 @@ export function ContributionGraph({
         <span className="font-mono text-xs text-faint">in the last year</span>
       </figcaption>
 
-      {/* Horizontal scroll rather than squashing cells on narrow screens. */}
-      <div className="overflow-x-auto pb-2">
+      {/* Horizontal scroll rather than squashing cells on narrow screens. The
+          right-edge fade is the affordance — without it a cut-off column just
+          looks like a clipped graph rather than something you can scroll. */}
+      <div className="relative">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-surface to-transparent xl:hidden"
+        />
+        <div className="overflow-x-auto pb-2">
         <div className="inline-flex min-w-full flex-col gap-1">
           <div className="flex gap-1 pl-8">
             {calendar.weeks.map((_, i) => {
@@ -122,6 +129,7 @@ export function ContributionGraph({
               </div>
             ))}
           </div>
+        </div>
         </div>
       </div>
 

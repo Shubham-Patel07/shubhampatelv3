@@ -101,8 +101,11 @@ export function ContactForm() {
   );
 }
 
+// text-base on mobile is deliberate: iOS Safari auto-zooms the page when you
+// focus an input whose font-size is under 16px, and never zooms back out.
+// 14px (text-sm) triggers it, so the small size only starts at sm.
 const inputClass =
-  "w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-faint focus:border-accent/50";
+  "w-full rounded-lg border border-border bg-background px-3 py-2.5 text-base text-foreground outline-none transition-colors placeholder:text-faint focus:border-accent/50 sm:text-sm";
 
 function Field({
   label,
