@@ -30,6 +30,12 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      # PageProps/LayoutProps are generated, not hand-written. They normally
+      # appear during `next dev` or `next build`, so a clean checkout has no
+      # route types and tsc fails with "Cannot find name 'PageProps'".
+      - name: Generate route types
+        run: npx next typegen
+
       - name: Typecheck
         run: npx tsc --noEmit
 
