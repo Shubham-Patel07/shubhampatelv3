@@ -71,7 +71,13 @@ export function Hero() {
         </div>
 
         <div className="w-full lg:justify-self-end">
-          <Terminal lines={heroLines} className="w-full max-w-md lg:ml-auto" />
+          {/* The two-column split only kicks in at lg. Below that the terminal
+              is alone on its row, so cap it only once it sits beside the copy —
+              otherwise it strands half the row empty on a tablet. */}
+          <Terminal
+            lines={heroLines}
+            className="w-full lg:ml-auto lg:max-w-md"
+          />
         </div>
       </div>
 

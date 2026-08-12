@@ -27,7 +27,7 @@ export function WritingTeaser() {
         }
       />
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post, i) => (
           <Reveal key={post.slug} delay={i * 0.08}>
             <PostCard post={post} />

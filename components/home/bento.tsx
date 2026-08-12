@@ -30,9 +30,9 @@ export function Bento() {
     <section className="mx-auto max-w-6xl px-6 py-20">
       <SectionHeading index="02" title="Engineer's dashboard" />
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-6">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
         {/* Stack */}
-        <Reveal className="md:col-span-4">
+        <Reveal className="sm:col-span-2 lg:col-span-4">
           <BentoCard className="h-full">
             <CardLabel>stack</CardLabel>
             <div className="mt-5 space-y-3">
@@ -61,7 +61,7 @@ export function Bento() {
         </Reveal>
 
         {/* Globe — bottom-anchored half globe */}
-        <Reveal className="md:col-span-2" delay={0.05}>
+        <Reveal className="lg:col-span-2" delay={0.05}>
           <BentoCard className="relative flex h-full min-h-[22rem] flex-col overflow-hidden">
             <div className="relative z-10">
               <CardLabel>location</CardLabel>
@@ -91,7 +91,7 @@ export function Bento() {
         </Reveal>
 
         {/* Stats */}
-        <Reveal className="md:col-span-2" delay={0.1}>
+        <Reveal className="lg:col-span-2" delay={0.1}>
           <BentoCard className="h-full">
             <CardLabel>by the numbers</CardLabel>
             <div className="mt-5 grid grid-cols-2 gap-5">
@@ -113,7 +113,7 @@ export function Bento() {
         </Reveal>
 
         {/* Now */}
-        <Reveal className="md:col-span-2" delay={0.15}>
+        <Reveal className="lg:col-span-2" delay={0.15}>
           <BentoCard className="flex h-full flex-col">
             <CardLabel>currently</CardLabel>
             <div className="mt-5 flex-1">
@@ -136,7 +136,7 @@ export function Bento() {
         </Reveal>
 
         {/* Connect */}
-        <Reveal className="md:col-span-2" delay={0.2}>
+        <Reveal className="lg:col-span-2" delay={0.2}>
           <BentoCard className="flex h-full flex-col">
             <CardLabel>connect</CardLabel>
             <div className="mt-5 flex flex-1 flex-col justify-center gap-1">

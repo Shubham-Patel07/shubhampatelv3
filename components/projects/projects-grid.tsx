@@ -68,7 +68,7 @@ export function ProjectsGrid({
         {filtered.length} project{filtered.length === 1 ? "" : "s"} shown
       </p>
 
-      <motion.div layout={!reduced} className="mt-8 grid gap-4 md:grid-cols-3">
+      <motion.div layout={!reduced} className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout" initial={false}>
           {filtered.map((project) => (
             <motion.div

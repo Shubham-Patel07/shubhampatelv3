@@ -47,7 +47,7 @@ export function Nav() {
           <span className="text-faint">()</span>
         </Link>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => {
             const active = isActive(pathname, link.href);
             return (
@@ -73,7 +73,7 @@ export function Nav() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Magnetic className="hidden md:inline-flex">
+          <Magnetic className="hidden lg:inline-flex">
             <Link
               href="/contact"
               className="group inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-1.5 text-sm font-medium text-accent-foreground transition-transform"
@@ -88,7 +88,7 @@ export function Nav() {
             aria-label="Toggle menu"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex size-9 items-center justify-center rounded-full border border-border text-muted md:hidden"
+            className="inline-flex size-9 items-center justify-center rounded-full border border-border text-muted lg:hidden"
           >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
@@ -98,7 +98,7 @@ export function Nav() {
       {/* Mobile menu */}
       <div
         className={cn(
-          "overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl md:hidden",
+          "overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl lg:hidden",
           open ? "max-h-96" : "max-h-0 border-t-transparent",
         )}
         style={{ transition: "max-height 300ms ease" }}

@@ -41,6 +41,25 @@ named as **strings** in `next.config.ts` — an imported function will not work.
 `content/writing/sample-post.mdx` is a scaffold documenting the format, kept as
 a draft so it never appears publicly. Delete it once real posts exist.
 
+## Responsive
+
+**Breakpoint ladder — never jump straight to three columns.** Card grids go
+`base (1) → sm:2 → lg:3`. `md:grid-cols-3` puts ~215px cards on an iPad and
+wraps every title onto three lines.
+
+**The nav switches to desktop at `lg`, not `md`.** Logo + 6 links + theme toggle
++ Contact needs ~900px; at `md` (768px) the Contact button was clipped off the
+right edge. Tablets keep the hamburger.
+
+The hero splits into two columns only at `lg`, so the terminal is capped with
+`lg:max-w-md` — capping it earlier strands half the row empty on a tablet.
+
+**Testing gotcha, worth knowing before you debug a phantom:** macOS clamps
+Chrome's minimum window width to ~500px, so `--window-size=390` lays out at 500
+and merely *crops* to 390 — which looks exactly like a horizontal-overflow bug.
+Use `scripts/responsive-shots.sh <route> <out.png> 390 768 1024`, which renders
+the site in fixed-width iframes to get a real narrow viewport.
+
 ## Lenis / scrolling
 
 Three things must stay true together or scrolling breaks intermittently — the

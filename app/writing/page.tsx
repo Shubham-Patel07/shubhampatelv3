@@ -25,7 +25,7 @@ export default function WritingPage() {
 
       <section className="mx-auto max-w-6xl px-6 pb-24 pt-6">
         {posts.length > 0 ? (
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post, i) => (
               <Reveal key={post.slug} delay={i * 0.06}>
                 <PostCard post={post} />
@@ -50,7 +50,7 @@ export default function WritingPage() {
         {plannedPosts.length > 0 && (
           <div className="mt-20">
             <SectionHeading index="01" title="On the way" />
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {plannedPosts.map((post, i) => (
                 <Reveal key={post.title} delay={i * 0.06}>
                   <PlannedCard title={post.title} tag={post.tag} />

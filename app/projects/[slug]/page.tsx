@@ -162,7 +162,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
         </CaseStudySection>
 
         <CaseStudySection index="05" title="Outcomes">
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {caseStudy.outcomes.map((outcome, i) => (
               <Reveal key={outcome.label} delay={i * 0.05}>
                 <div className="h-full rounded-2xl border border-border bg-surface/60 p-5">

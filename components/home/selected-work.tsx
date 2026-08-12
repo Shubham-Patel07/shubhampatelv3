@@ -22,7 +22,7 @@ export function SelectedWork() {
         }
       />
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {featuredProjects.map((project, i) => (
           <Reveal key={project.slug} delay={i * 0.08}>
             <ProjectCard project={project} className="h-full" />
