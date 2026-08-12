@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 /** Maps a stack item to a generated glyph key where one exists. */
 const iconKey: Record<string, string> = {
   Java: "java",
+  AWS: "aws",
   Python: "python",
   Go: "go",
   "Spring Boot": "springboot",
@@ -113,7 +114,7 @@ export default function AboutPage() {
                     >
                       <TechLogo
                         name={iconKey[item]}
-                        className="size-4 text-faint"
+                        className="h-4 w-auto text-faint"
                       />
                       {item}
                     </li>

@@ -85,7 +85,7 @@ export function Hero() {
                 className="flex items-center gap-10 font-mono text-sm text-faint transition-colors hover:text-foreground"
               >
                 <span className="flex items-center gap-2">
-                  <TechLogo name={tech.icon} className="size-[1.05rem]" />
+                  <TechLogo name={tech.icon} className="h-[1.15rem] w-auto" />
                   {tech.name}
                 </span>
                 <span className="text-accent/50">/</span>

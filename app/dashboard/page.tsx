@@ -127,7 +127,7 @@ export default async function DashboardPage() {
                             <span className="flex min-w-0 items-center gap-2">
                               <TechLogo
                                 name={languageIcons[lang.name]}
-                                className="size-3.5 text-faint"
+                                className="h-3.5 w-auto text-faint"
                               />
                               <span className="truncate text-foreground">
                                 {lang.name}

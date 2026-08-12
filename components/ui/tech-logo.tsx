@@ -20,10 +20,15 @@ export function TechLogo({
 
   return (
     <svg
-      viewBox="0 0 24 24"
+      // Per-icon viewBox: Simple Icons are 24×24 but Font Awesome marks aren't
+      // (AWS is 640×512). Hardcoding 24 would crop them.
+      viewBox={icon.viewBox}
       fill="currentColor"
       aria-hidden
-      className={cn("size-4 shrink-0", className)}
+      // Height-driven with auto width, so a wide logotype (AWS) gets the full
+      // line height instead of being letterboxed inside a square and rendering
+      // a quarter smaller than the square glyphs beside it.
+      className={cn("h-4 w-auto shrink-0", className)}
     >
       <path d={icon.path} />
     </svg>

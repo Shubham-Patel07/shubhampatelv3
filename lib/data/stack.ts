@@ -47,9 +47,9 @@ export type MarqueeItem = {
 /**
  * Flat, curated list for the hero marquee ticker.
  *
- * `icon` is optional on purpose: Simple Icons has dropped several marks over
- * trademark policy (AWS among them), so an entry without one renders as its
- * name alone rather than a broken or invented glyph.
+ * `icon` stays optional on purpose — an entry without one renders as its name
+ * alone rather than a broken or invented glyph. (AWS and Java are not in Simple
+ * Icons at all; both come from Font Awesome instead — see the generator.)
  */
 export const marqueeStack: MarqueeItem[] = [
   { name: "Java", icon: "java" },
@@ -57,7 +57,7 @@ export const marqueeStack: MarqueeItem[] = [
   { name: "Python", icon: "python" },
   { name: "Spring Boot", icon: "springboot" },
   { name: "Kubernetes", icon: "kubernetes" },
-  { name: "AWS" },
+  { name: "AWS", icon: "aws" },
   { name: "Terraform", icon: "terraform" },
   { name: "Docker", icon: "docker" },
   { name: "OpenShift", icon: "openshift" },

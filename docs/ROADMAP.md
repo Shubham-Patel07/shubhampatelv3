@@ -108,7 +108,20 @@ at equal dimensions the stroked ones read a size smaller. That's why `MailIcon`
 exists instead of lucide's `Mail`.
 
 Tech logos in `lib/data/tech-icons.ts` are **generated** — edit the list in
-`scripts/gen-tech-icons.mjs` and run `npm run gen:icons`. `simple-icons` is a
-devDependency only; the paths are baked in so nothing ships at runtime. It has
-no AWS or Java mark (trademark removals), so `MarqueeItem.icon` is optional and
-falls back to the name alone; `java` maps to the OpenJDK glyph.
+`scripts/gen-tech-icons.mjs` and run `npm run gen:icons`. The icon packages are
+devDependencies only; paths are baked in so nothing ships at runtime.
+
+**Two sources, deliberately — neither covers the stack alone:**
+
+- `simple-icons` (CC0) is the default and covers 13 of 15.
+- `@iconify-json/fa6-brands` (Font Awesome Free, **CC BY 4.0** — attribution is
+  in the generated file's header) supplies `aws` and `java`, which Simple Icons
+  dropped over trademark policy.
+
+Font Awesome alone is *not* a substitute: it lacks Spring Boot, Kubernetes,
+Terraform, OpenShift, Prometheus, Grafana and Helm. (Devicon covers 14/15 —
+everything but OpenShift — if a single source is ever wanted.)
+
+`MarqueeItem.icon` stays optional so a missing mark degrades to the name alone.
+Render logos with `h-* w-auto`, never `size-*`: AWS is a 640×512 logotype and a
+square box letterboxes it a quarter smaller than the glyphs beside it.
