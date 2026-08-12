@@ -1,1 +1,1 @@
-shubham.patel() — Software engineer who builds it, and runs it in production. Java, Go, Kubernetes, AWS, Terraform.
+shubham.patel() — Software engineer who builds it and runs it in production. Java, Go, Kubernetes, AWS, Terraform.
