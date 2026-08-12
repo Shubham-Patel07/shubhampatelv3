@@ -120,6 +120,116 @@ export async function getGithubStats(): Promise<GithubStats | null> {
   }
 }
 
+export type ExternalPR = {
+  title: string;
+  url: string;
+  number: number;
+  state: "open" | "closed";
+  merged: boolean;
+  createdAt: string;
+};
+
+export type ContributedRepo = {
+  /** "owner/name" */
+  full: string;
+  owner: string;
+  name: string;
+  url: string;
+  total: number;
+  merged: number;
+  prs: ExternalPR[];
+};
+
+export type ExternalContributions = {
+  totalPRs: number;
+  mergedPRs: number;
+  repoCount: number;
+  repos: ContributedRepo[];
+};
+
+/**
+ * Pull requests opened on **other people's** repositories.
+ *
+ * Uses the search API, which is the only endpoint that answers "everything this
+ * person authored, anywhere". PRs against Shubham's own repos are filtered out —
+ * they're already represented by the Dashboard, and they aren't contributions to
+ * anyone else's project.
+ *
+ * Search is capped at 100 results per page; if the total ever exceeds that,
+ * paginate here rather than silently truncating.
+ */
+export async function getExternalContributions(): Promise<ExternalContributions | null> {
+  try {
+    const q = encodeURIComponent(`author:${username} type:pr`);
+    const res = await fetch(
+      `${API}/search/issues?q=${q}&per_page=100&sort=created&order=desc`,
+      { headers: headers(), next: { revalidate: REVALIDATE } },
+    );
+    if (!res.ok) return null;
+
+    const json = await res.json();
+    const items: unknown[] = json?.items ?? [];
+    const mine = username.toLowerCase();
+
+    const byRepo = new Map<string, ContributedRepo>();
+    let totalPRs = 0;
+    let mergedPRs = 0;
+
+    for (const raw of items) {
+      const item = raw as {
+        title: string;
+        html_url: string;
+        number: number;
+        state: "open" | "closed";
+        created_at: string;
+        repository_url: string;
+        pull_request?: { merged_at: string | null };
+      };
+
+      const full = item.repository_url.split("/repos/")[1];
+      if (!full) continue;
+      const [owner, name] = full.split("/");
+      if (!owner || !name || owner.toLowerCase() === mine) continue;
+
+      const merged = Boolean(item.pull_request?.merged_at);
+      totalPRs += 1;
+      if (merged) mergedPRs += 1;
+
+      const entry = byRepo.get(full) ?? {
+        full,
+        owner,
+        name,
+        url: `https://github.com/${full}`,
+        total: 0,
+        merged: 0,
+        prs: [],
+      };
+      entry.total += 1;
+      if (merged) entry.merged += 1;
+      entry.prs.push({
+        title: item.title,
+        url: item.html_url,
+        number: item.number,
+        state: item.state,
+        merged,
+        createdAt: item.created_at,
+      });
+      byRepo.set(full, entry);
+    }
+
+    const repos = [...byRepo.values()].sort(
+      (a, b) => b.merged - a.merged || b.total - a.total,
+    );
+    for (const r of repos) {
+      r.prs.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    }
+
+    return { totalPRs, mergedPRs, repoCount: repos.length, repos };
+  } catch {
+    return null;
+  }
+}
+
 export type ContributionDay = { date: string; count: number };
 export type ContributionCalendar = {
   total: number;

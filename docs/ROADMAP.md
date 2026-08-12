@@ -18,7 +18,7 @@ phase numbering is written down.
 | 5 | About & Contact | done — timeline content still `[verify]` |
 | 6 | Writing (MDX blog) | done — no real posts yet |
 | 7a | Dashboard — live GitHub stats + contribution graph | done |
-| 7b | Contributions page | todo |
+| 7b | Contributions page | done |
 
 ## Phase 6 notes — writing / MDX
 
@@ -89,6 +89,13 @@ there is no public REST equivalent — so it reports `no-token` separately from
 `.env` (gitignored) holds `GITHUB_TOKEN`. `WAKATIME_API_KEY` is present but
 empty, so no coding-hours panel is wired up; add one only once the key is set —
 an empty panel is worse than no panel.
+
+**Contributions (7b)** uses the GitHub **search** API — the only endpoint that
+answers "everything this person authored, anywhere". PRs against Shubham's own
+repos are filtered out; those belong to the Dashboard. Search returns max 100
+per page: paginate if the total ever exceeds it rather than silently truncating.
+PR state is shown as icon + label, never colour alone, since merged vs.
+closed-unmerged is the whole point of the page.
 
 Heatmap colors are the `--heat-0..4` tokens in `globals.css`: one hue, five
 steps, `heat-0` neutral so an empty day never reads as a low count. The dark
