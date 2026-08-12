@@ -20,6 +20,14 @@ phase numbering is written down.
 | 7a | Dashboard — live GitHub stats + contribution graph | done |
 | 7b | Contributions page | done |
 
+All phases are complete. Remaining work is content, tracked as GitHub issues
+#10–#13 (case-study metrics, employment history, real blog posts, device QA).
+
+> **Parked:** [FREELANCE-PIVOT.md](FREELANCE-PIVOT.md) — analysis for
+> repositioning the site from a job-seeking portfolio to a freelance brand.
+> **On hold, not approved work.** Don't start on it without reopening the four
+> decisions listed there.
+
 ## Phase 6 notes — writing / MDX
 
 Posts are `.mdx` files in `content/writing/`. Adding a file publishes it; there
