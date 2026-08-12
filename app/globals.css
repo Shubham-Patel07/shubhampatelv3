@@ -83,7 +83,6 @@
   --animate-shimmer: shimmer 3s linear infinite;
   --animate-aurora: aurora 18s ease-in-out infinite;
   --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
-  --animate-spin-slow: spin 18s linear infinite;
   --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
 }
 
@@ -147,10 +146,6 @@
     linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px);
   background-size: 48px 48px;
 }
-@utility bg-dots {
-  background-image: radial-gradient(color-mix(in oklab, var(--foreground) 12%, transparent) 1px, transparent 1px);
-  background-size: 22px 22px;
-}
 /* fade a background out toward the edges */
 @utility mask-radial-faded {
   -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
@@ -179,23 +174,6 @@
   background-clip: text;
   color: transparent;
   animation: var(--animate-shimmer);
-}
-
-.card {
-  background: color-mix(in oklab, var(--surface) 92%, transparent);
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-}
-
-/* film-grain overlay */
-.noise::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.035;
-  z-index: 1;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* honor reduced-motion everywhere */

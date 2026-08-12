@@ -56,7 +56,7 @@ export default function RootLayout({
       // The sticky footer comes from body's `min-h-dvh flex flex-col`.
       className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable}`}
     >
-      <body className="relative flex min-h-dvh flex-col bg-background text-foreground antialiased">
+      <body className="relative flex min-h-dvh flex-col">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
