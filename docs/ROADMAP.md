@@ -15,7 +15,7 @@ phase numbering is written down.
 | 2 | Design system, app shell (nav/footer/theme/Lenis/spotlight), effects kit | done |
 | 3 | Home page — hero, selected work, bento, writing teaser, CTA, globe | done |
 | 4 | Projects index + case studies | done — metrics still `[verify]` |
-| 5 | About & Contact | todo |
+| 5 | About & Contact | done — timeline content still `[verify]` |
 | 6 | Writing (MDX blog) | todo |
 | 7 | Dashboard (live GitHub / WakaTime) + Contributions | todo |
 
@@ -39,6 +39,18 @@ Phases 5–7 are provisional — confirm scope before starting one.
   is the on-brand stub used for routes whose phase hasn't landed yet.
 - Facts that aren't verified yet are marked `[verify]` in a comment next to the
   value. Don't invent metrics — leave the marker.
+
+## Phase 5 notes
+
+`lib/data/experience.ts` ships `[verify]` placeholders for the Nasdaq and Silver
+Touch entries. **Do not write these for him.** Company names and the current
+degree are known; roles, dates and highlights are real employment claims and
+must come from Shubham. `Timeline` hides `highlights`/`tech` when empty, so
+filling them in is purely additive.
+
+The contact page has no backend — `ContactForm` composes a `mailto:` and says so
+on the page. If a real form is ever wanted it needs a mail provider; a form that
+silently drops messages is worse than none.
 
 ## Phase 4 notes
 
