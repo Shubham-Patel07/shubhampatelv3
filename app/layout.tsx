@@ -51,7 +51,10 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full`}
+      // No `h-full` — height:100% on the root is what lets the document height
+      // collapse to the viewport and strand Lenis with a zero scroll limit.
+      // The sticky footer comes from body's `min-h-dvh flex flex-col`.
+      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable}`}
     >
       <body className="relative flex min-h-dvh flex-col bg-background text-foreground antialiased">
         <ThemeProvider

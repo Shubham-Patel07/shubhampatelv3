@@ -20,6 +20,22 @@ phase numbering is written down.
 | 7a | Dashboard — live GitHub stats + contribution graph | done |
 | 7b | Contributions page | todo |
 
+## Lenis / scrolling
+
+Three things must stay true together or scrolling breaks intermittently — the
+symptom is a page that won't scroll on roughly 1 load in 10 and recovers on
+refresh, because Lenis measured a scroll limit of zero:
+
+1. `app/globals.css` imports `lenis/dist/lenis.css`. **Not optional** — its
+   `html.lenis, html.lenis body { height: auto }` is what stops a
+   height-constrained root from collapsing the scrollable area.
+2. The root `<html>` carries **no** `h-full`. The sticky footer comes from
+   body's `min-h-dvh flex flex-col`, not from a 100%-height root.
+3. **No `scroll-behavior: smooth`** on `html`. Lenis sets scroll position every
+   frame and native smooth scrolling fights it; Next.js warns about the
+   combination too. The reduced-motion block keeps `auto` explicit for users who
+   get native scrolling instead.
+
 ## Phase 7 notes
 
 `lib/github.ts` never throws — every fetch resolves to `null`/a status so one

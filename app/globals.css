@@ -1,4 +1,9 @@
 @import "tailwindcss";
+/* Required by Lenis, not optional. Its `html.lenis, html.lenis body { height:
+   auto }` rule is what stops a height-constrained root from collapsing the
+   scrollable area to zero — without it Lenis intermittently measures a scroll
+   limit of 0 and silently swallows wheel events until a reload. */
+@import "lenis/dist/lenis.css";
 
 /* next-themes toggles a `.dark` class on <html>; drive Tailwind's dark: variant from it. */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -106,7 +111,10 @@
   }
   html {
     -webkit-text-size-adjust: 100%;
-    scroll-behavior: smooth;
+    /* No `scroll-behavior: smooth` here on purpose. Lenis drives the scroll
+       position itself every frame, and native smooth scrolling fights it —
+       Next.js warns about this combination too. The reduced-motion block below
+       keeps `auto` explicit for users who get native scrolling instead. */
     scrollbar-gutter: stable;
   }
   body {
