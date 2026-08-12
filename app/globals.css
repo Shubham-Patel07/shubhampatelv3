@@ -19,6 +19,15 @@
   --accent: #0c9d63;
   --accent-soft: #10b981;
   --accent-foreground: #ffffff;
+
+  /* Sequential ramp for the contribution heatmap — one hue, more is darker.
+     `heat-0` is the empty cell and stays neutral so "nothing" never reads as
+     a low value. Steps are monotonic in OKLCH lightness. */
+  --heat-0: #e9e9e4;
+  --heat-1: #a7f3d0;
+  --heat-2: #34d399;
+  --heat-3: #059669;
+  --heat-4: #065f46;
 }
 
 .dark {
@@ -33,6 +42,15 @@
   --accent: #34d399;
   --accent-soft: #34d399;
   --accent-foreground: #04130c;
+
+  /* Dark mode inverts the anchor: against a near-black surface, more is
+     *brighter*. These are chosen steps off the same emerald ramp, not a
+     flip of the light values. */
+  --heat-0: #191d25;
+  --heat-1: #064e3b;
+  --heat-2: #047857;
+  --heat-3: #10b981;
+  --heat-4: #6ee7b7;
 }
 
 @theme inline {
@@ -47,6 +65,11 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-accent-foreground: var(--accent-foreground);
+  --color-heat-0: var(--heat-0);
+  --color-heat-1: var(--heat-1);
+  --color-heat-2: var(--heat-2);
+  --color-heat-3: var(--heat-3);
+  --color-heat-4: var(--heat-4);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;

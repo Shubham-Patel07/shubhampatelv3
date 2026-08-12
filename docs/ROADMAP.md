@@ -17,9 +17,26 @@ phase numbering is written down.
 | 4 | Projects index + case studies | done — metrics still `[verify]` |
 | 5 | About & Contact | done — timeline content still `[verify]` |
 | 6 | Writing (MDX blog) | todo |
-| 7 | Dashboard (live GitHub / WakaTime) + Contributions | todo |
+| 7a | Dashboard — live GitHub stats + contribution graph | done |
+| 7b | Contributions page | todo |
 
-Phases 5–7 are provisional — confirm scope before starting one.
+## Phase 7 notes
+
+`lib/github.ts` never throws — every fetch resolves to `null`/a status so one
+dead source degrades a single panel instead of the route.
+
+Profile and repo stats use the **public REST API** and work with no credentials
+(60 req/hr/IP). The contribution calendar is **GraphQL-only and needs a token** —
+there is no public REST equivalent — so it reports `no-token` separately from
+`error`, because "add a token" and "GitHub is down" need different reactions.
+
+`.env` (gitignored) holds `GITHUB_TOKEN`. `WAKATIME_API_KEY` is present but
+empty, so no coding-hours panel is wired up; add one only once the key is set —
+an empty panel is worse than no panel.
+
+Heatmap colors are the `--heat-0..4` tokens in `globals.css`: one hue, five
+steps, `heat-0` neutral so an empty day never reads as a low count. The dark
+steps are chosen against the dark surface, not an inversion of the light ones.
 
 ## Conventions worth not rediscovering
 
