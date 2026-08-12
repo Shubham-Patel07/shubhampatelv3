@@ -21,6 +21,24 @@ export function LinkedinIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+/**
+ * Filled envelope, deliberately not lucide's `Mail`. Lucide icons are stroked
+ * and sit inside padding, so next to the solid brand glyphs above they read a
+ * size smaller at identical dimensions. Matching the fill style is what makes
+ * the row line up optically.
+ */
+export function MailIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M1.7 3.4h20.6c.94 0 1.7.76 1.7 1.7v13.8c0 .94-.76 1.7-1.7 1.7H1.7A1.7 1.7 0 0 1 0 18.9V5.1c0-.94.76-1.7 1.7-1.7Zm1.63 2.4L12 12.29 20.67 5.8H3.33Z"
+      />
+    </svg>
+  );
+}
+
 export function XIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>

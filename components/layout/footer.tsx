@@ -1,13 +1,12 @@
 import Link from "next/link";
 import type { ComponentType } from "react";
-import { Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon, XIcon } from "@/components/icons";
+import { GithubIcon, LinkedinIcon, MailIcon, XIcon } from "@/components/icons";
 import { navLinks, siteConfig, socials, type SocialIcon } from "@/lib/data/site";
 
 const icons: Record<SocialIcon, ComponentType<{ className?: string }>> = {
   github: GithubIcon,
   linkedin: LinkedinIcon,
-  mail: Mail,
+  mail: MailIcon,
   x: XIcon,
 };
 

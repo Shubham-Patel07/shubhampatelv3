@@ -5,6 +5,7 @@ import { ShimmerText } from "@/components/ui/shimmer-text";
 import { Magnetic } from "@/components/ui/magnetic";
 import { Marquee } from "@/components/ui/marquee";
 import { Terminal, type TerminalLine } from "@/components/ui/terminal";
+import { TechLogo } from "@/components/ui/tech-logo";
 import { siteConfig } from "@/lib/data/site";
 import { marqueeStack } from "@/lib/data/stack";
 
@@ -80,10 +81,13 @@ export function Hero() {
             duration={45}
             items={marqueeStack.map((tech) => (
               <span
-                key={tech}
-                className="flex items-center gap-10 font-mono text-sm text-faint"
+                key={tech.name}
+                className="flex items-center gap-10 font-mono text-sm text-faint transition-colors hover:text-foreground"
               >
-                {tech}
+                <span className="flex items-center gap-2">
+                  <TechLogo name={tech.icon} className="size-[1.05rem]" />
+                  {tech.name}
+                </span>
                 <span className="text-accent/50">/</span>
               </span>
             ))}

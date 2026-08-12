@@ -38,21 +38,33 @@ export const stackGroups: StackGroup[] = [
   },
 ];
 
-/** Flat, curated list for the hero marquee ticker. */
-export const marqueeStack: string[] = [
-  "Java",
-  "Go",
-  "Python",
-  "Spring Boot",
-  "Kubernetes",
-  "AWS",
-  "Terraform",
-  "Docker",
-  "OpenShift",
-  "Prometheus",
-  "Grafana",
-  "Helm",
-  "Jenkins",
-  "GitHub Actions",
-  "Linux",
+export type MarqueeItem = {
+  name: string;
+  /** Key into `lib/data/tech-icons.ts`. Omitted where no mark is available. */
+  icon?: string;
+};
+
+/**
+ * Flat, curated list for the hero marquee ticker.
+ *
+ * `icon` is optional on purpose: Simple Icons has dropped several marks over
+ * trademark policy (AWS among them), so an entry without one renders as its
+ * name alone rather than a broken or invented glyph.
+ */
+export const marqueeStack: MarqueeItem[] = [
+  { name: "Java", icon: "java" },
+  { name: "Go", icon: "go" },
+  { name: "Python", icon: "python" },
+  { name: "Spring Boot", icon: "springboot" },
+  { name: "Kubernetes", icon: "kubernetes" },
+  { name: "AWS" },
+  { name: "Terraform", icon: "terraform" },
+  { name: "Docker", icon: "docker" },
+  { name: "OpenShift", icon: "openshift" },
+  { name: "Prometheus", icon: "prometheus" },
+  { name: "Grafana", icon: "grafana" },
+  { name: "Helm", icon: "helm" },
+  { name: "Jenkins", icon: "jenkins" },
+  { name: "GitHub Actions", icon: "githubactions" },
+  { name: "Linux", icon: "linux" },
 ];

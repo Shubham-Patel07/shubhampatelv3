@@ -1,11 +1,11 @@
 import type { ComponentType } from "react";
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { BentoCard } from "@/components/ui/bento-card";
 import { Counter } from "@/components/ui/counter";
 import { Globe } from "@/components/ui/globe";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { GithubIcon, LinkedinIcon, XIcon } from "@/components/icons";
+import { GithubIcon, LinkedinIcon, MailIcon, XIcon } from "@/components/icons";
 import { stackGroups } from "@/lib/data/stack";
 import { stats } from "@/lib/data/stats";
 import { socials, type SocialIcon } from "@/lib/data/site";
@@ -13,7 +13,7 @@ import { socials, type SocialIcon } from "@/lib/data/site";
 const socialIcons: Record<SocialIcon, ComponentType<{ className?: string }>> = {
   github: GithubIcon,
   linkedin: LinkedinIcon,
-  mail: Mail,
+  mail: MailIcon,
   x: XIcon,
 };
 

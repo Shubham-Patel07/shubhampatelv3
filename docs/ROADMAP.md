@@ -51,5 +51,15 @@ renders literally as `[verify]`. Shubham needs to supply measured values — or
 the outcome should be cut rather than guessed.
 
 `lucide-react` v1 ships **no brand icons**. Import `GithubIcon` / `LinkedinIcon`
-/ `XIcon` from `components/icons.tsx`; `import { Github } from "lucide-react"`
-fails the build.
+/ `MailIcon` / `XIcon` from `components/icons.tsx`; `import { Github } from
+"lucide-react"` fails the build.
+
+Don't mix lucide's stroked icons with the filled brand glyphs in the same row —
+at equal dimensions the stroked ones read a size smaller. That's why `MailIcon`
+exists instead of lucide's `Mail`.
+
+Tech logos in `lib/data/tech-icons.ts` are **generated** — edit the list in
+`scripts/gen-tech-icons.mjs` and run `npm run gen:icons`. `simple-icons` is a
+devDependency only; the paths are baked in so nothing ships at runtime. It has
+no AWS or Java mark (trademark removals), so `MarqueeItem.icon` is optional and
+falls back to the name alone; `java` maps to the OpenJDK glyph.
