@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Surface } from "@/components/ui/surface";
 import type { Project } from "@/lib/data/projects";
 import { cn } from "@/lib/utils";
 
@@ -12,10 +13,11 @@ export function ProjectCard({
   className?: string;
 }) {
   return (
-    <Link
+    <Surface
+      as={Link}
       href={`/projects/${project.slug}`}
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface/60 p-6 transition-colors duration-300 hover:border-border-strong hover:bg-surface",
+        "group relative flex flex-col overflow-hidden transition-colors duration-300 hover:border-border-strong hover:bg-surface",
         className,
       )}
     >
@@ -60,6 +62,6 @@ export function ProjectCard({
         read case study
         <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </div>
-    </Link>
+    </Surface>
   );
 }

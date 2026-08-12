@@ -1,7 +1,8 @@
 import type { ElementType, ReactNode } from "react";
+import { Surface } from "@/components/ui/surface";
 import { cn } from "@/lib/utils";
 
-/** Base surface panel for the bento grid. */
+/** Bento-grid surface: the shared card plus a hover sheen. */
 export function BentoCard({
   children,
   className,
@@ -11,11 +12,11 @@ export function BentoCard({
   className?: string;
   as?: ElementType;
 }) {
-  const Tag = as ?? "div";
   return (
-    <Tag
+    <Surface
+      as={as}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-border bg-surface/60 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-border-strong",
+        "group relative overflow-hidden backdrop-blur-sm transition-colors duration-300 hover:border-border-strong",
         className,
       )}
     >
@@ -25,6 +26,6 @@ export function BentoCard({
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
       />
       {children}
-    </Tag>
+    </Surface>
   );
 }

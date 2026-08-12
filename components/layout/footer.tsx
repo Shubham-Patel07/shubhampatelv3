@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ComponentType } from "react";
 import { GithubIcon, LinkedinIcon, MailIcon, XIcon } from "@/components/icons";
 import { navLinks, siteConfig, socials, type SocialIcon } from "@/lib/data/site";
+import { StatusDot } from "@/components/ui/status-dot";
 
 const icons: Record<SocialIcon, ComponentType<{ className?: string }>> = {
   github: GithubIcon,
@@ -30,7 +31,7 @@ export function Footer() {
           </Link>
           <p className="mt-4 max-w-xs text-sm text-muted">{siteConfig.tagline}</p>
           <p className="mt-4 flex items-center gap-2 font-mono text-xs text-faint">
-            <span className="size-1.5 animate-pulse-glow rounded-full bg-accent" />
+            <StatusDot />
             {siteConfig.location} · {siteConfig.timezoneLabel}
           </p>
         </div>

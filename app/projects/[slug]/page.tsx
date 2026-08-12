@@ -9,6 +9,7 @@ import { AuroraBackground } from "@/components/ui/aurora-background";
 import { CaseStudySection } from "@/components/projects/case-study-section";
 import { projects, getProject } from "@/lib/data/projects";
 import { siteConfig } from "@/lib/data/site";
+import { Surface } from "@/components/ui/surface";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -119,7 +120,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           <ol className="space-y-4">
             {caseStudy.architecture.map((step, i) => (
               <Reveal key={step.title} delay={i * 0.05}>
-                <li className="rounded-2xl border border-border bg-surface/60 p-5">
+                <Surface as="li" className="p-5">
                   <div className="flex items-baseline gap-3">
                     <span className="font-mono text-xs text-accent">
                       {String(i + 1).padStart(2, "0")}
@@ -129,7 +130,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
                     </h3>
                   </div>
                   <p className="mt-2 leading-relaxed text-muted">{step.body}</p>
-                </li>
+                </Surface>
               </Reveal>
             ))}
           </ol>
@@ -139,7 +140,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           <div className="space-y-4">
             {caseStudy.decisions.map((d, i) => (
               <Reveal key={d.decision} delay={i * 0.05}>
-                <div className="rounded-2xl border border-border bg-surface/60 p-5">
+                <Surface className="p-5">
                   <h3 className="font-display text-lg font-semibold tracking-tight">
                     {d.decision}
                   </h3>
@@ -155,7 +156,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
                     </span>
                     {d.tradeoff}
                   </p>
-                </div>
+                </Surface>
               </Reveal>
             ))}
           </div>
@@ -165,7 +166,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {caseStudy.outcomes.map((outcome, i) => (
               <Reveal key={outcome.label} delay={i * 0.05}>
-                <div className="h-full rounded-2xl border border-border bg-surface/60 p-5">
+                <Surface className="h-full p-5">
                   <p className="font-display text-2xl font-semibold text-accent">
                     {outcome.value}
                   </p>
@@ -175,7 +176,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
                   <p className="mt-2 text-sm leading-relaxed text-faint">
                     {outcome.detail}
                   </p>
-                </div>
+                </Surface>
               </Reveal>
             ))}
           </div>
@@ -240,7 +241,7 @@ function NextProject({ slug }: { slug: string }) {
   return (
     <Link
       href={`/projects/${next.slug}`}
-      className="group flex items-center justify-between gap-4 rounded-2xl border border-border bg-surface/60 p-6 transition-colors hover:border-border-strong hover:bg-surface"
+      className="group flex items-center justify-between gap-4 transition-colors hover:border-border-strong hover:bg-surface"
     >
       <div>
         <p className="font-mono text-xs text-faint">next case study</p>

@@ -10,6 +10,8 @@ import { Timeline } from "@/components/about/timeline";
 import { timeline, principles } from "@/lib/data/experience";
 import { stackGroups } from "@/lib/data/stack";
 import { siteConfig } from "@/lib/data/site";
+import { Surface } from "@/components/ui/surface";
+import { CardLabel } from "@/components/ui/card-label";
 
 export const metadata: Metadata = {
   title: "About",
@@ -79,12 +81,12 @@ export default function AboutPage() {
         <div className="grid gap-4 sm:grid-cols-2">
           {principles.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.06}>
-              <div className="h-full rounded-2xl border border-border bg-surface/60 p-6">
+              <Surface className="h-full">
                 <h3 className="font-display text-lg font-semibold tracking-tight">
                   {p.title}
                 </h3>
                 <p className="mt-2 leading-relaxed text-muted">{p.body}</p>
-              </div>
+              </Surface>
             </Reveal>
           ))}
         </div>
@@ -102,10 +104,8 @@ export default function AboutPage() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {stackGroups.map((group, i) => (
             <Reveal key={group.label} delay={i * 0.05}>
-              <div className="h-full rounded-2xl border border-border bg-surface/60 p-6">
-                <p className="font-mono text-xs uppercase tracking-widest text-faint">
-                  {group.label}
-                </p>
+              <Surface className="h-full">
+                <CardLabel>{group.label}</CardLabel>
                 <ul className="mt-4 space-y-2">
                   {group.items.map((item) => (
                     <li
@@ -120,7 +120,7 @@ export default function AboutPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </Surface>
             </Reveal>
           ))}
         </div>
@@ -157,10 +157,8 @@ function Facts() {
   ];
 
   return (
-    <div className="rounded-2xl border border-border bg-surface/60 p-6">
-      <p className="font-mono text-xs uppercase tracking-widest text-faint">
-        {"//"} at a glance
-      </p>
+    <Surface>
+      <CardLabel>at a glance</CardLabel>
       <dl className="mt-5 space-y-4">
         {facts.map((f) => (
           <div key={f.label}>
@@ -171,6 +169,6 @@ function Facts() {
           </div>
         ))}
       </dl>
-    </div>
+    </Surface>
   );
 }

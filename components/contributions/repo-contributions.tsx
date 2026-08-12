@@ -1,5 +1,6 @@
 import { ArrowUpRight, GitMerge, GitPullRequest, GitPullRequestClosed } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Surface } from "@/components/ui/surface";
 import type { ContributedRepo } from "@/lib/github";
 
 function formatDate(iso: string) {
@@ -19,7 +20,7 @@ function formatDate(iso: string) {
  */
 export function RepoContributions({ repo }: { repo: ContributedRepo }) {
   return (
-    <div className="rounded-2xl border border-border bg-surface/60 p-6">
+    <Surface>
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <a
@@ -76,6 +77,6 @@ export function RepoContributions({ repo }: { repo: ContributedRepo }) {
           </li>
         ))}
       </ul>
-    </div>
+    </Surface>
   );
 }

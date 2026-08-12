@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowUpRight, Check, Copy } from "lucide-react";
+import { Surface } from "@/components/ui/surface";
 import { siteConfig } from "@/lib/data/site";
 
 /**
@@ -34,7 +35,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="rounded-2xl border border-border bg-surface/60 p-6 sm:p-8">
+    <Surface className="sm:p-8">
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Your name" htmlFor="name">
           <input
@@ -97,7 +98,7 @@ export function ContactForm() {
       <p className="mt-4 font-mono text-xs text-faint">
         This opens your own mail client — nothing is sent through this site.
       </p>
-    </div>
+    </Surface>
   );
 }
 

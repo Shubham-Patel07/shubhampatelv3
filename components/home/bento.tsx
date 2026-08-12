@@ -9,6 +9,8 @@ import { GithubIcon, LinkedinIcon, MailIcon, XIcon } from "@/components/icons";
 import { stackGroups } from "@/lib/data/stack";
 import { stats } from "@/lib/data/stats";
 import { socials, type SocialIcon } from "@/lib/data/site";
+import { StatusDot } from "@/components/ui/status-dot";
+import { CardLabel } from "@/components/ui/card-label";
 
 const socialIcons: Record<SocialIcon, ComponentType<{ className?: string }>> = {
   github: GithubIcon,
@@ -16,14 +18,6 @@ const socialIcons: Record<SocialIcon, ComponentType<{ className?: string }>> = {
   mail: MailIcon,
   x: XIcon,
 };
-
-function CardLabel({ children }: { children: string }) {
-  return (
-    <span className="font-mono text-xs uppercase tracking-widest text-faint">
-      {"//"} {children}
-    </span>
-  );
-}
 
 export function Bento() {
   return (
@@ -118,7 +112,7 @@ export function Bento() {
             <CardLabel>currently</CardLabel>
             <div className="mt-5 flex-1">
               <p className="flex items-center gap-2 font-mono text-xs text-accent">
-                <span className="size-1.5 animate-pulse-glow rounded-full bg-accent" />
+                <StatusDot />
                 M.Tech CSE · in progress
               </p>
               <p className="mt-2 font-display text-xl font-semibold">

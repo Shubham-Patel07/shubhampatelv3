@@ -1,4 +1,5 @@
 import { AuroraBackground } from "@/components/ui/aurora-background";
+import { StatusDot } from "@/components/ui/status-dot";
 
 /**
  * Temporary on-brand stub for routes that are wired into the nav but built in a
@@ -22,7 +23,7 @@ export function PagePlaceholder({
       </h1>
       <p className="mt-5 max-w-xl text-lg text-muted">{description}</p>
       <span className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1 font-mono text-xs text-muted">
-        <span className="size-1.5 animate-pulse-glow rounded-full bg-accent" />
+        <StatusDot />
         building · shipping soon
       </span>
     </section>

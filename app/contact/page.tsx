@@ -6,6 +6,9 @@ import { Reveal } from "@/components/ui/reveal";
 import { ContactForm } from "@/components/contact/contact-form";
 import { GithubIcon, LinkedinIcon, MailIcon, XIcon } from "@/components/icons";
 import { socials, siteConfig, type SocialIcon } from "@/lib/data/site";
+import { Surface } from "@/components/ui/surface";
+import { CardLabel } from "@/components/ui/card-label";
+import { StatusDot } from "@/components/ui/status-dot";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -36,10 +39,8 @@ export default function ContactPage() {
           </Reveal>
 
           <Reveal delay={0.08} className="space-y-4">
-            <div className="rounded-2xl border border-border bg-surface/60 p-6">
-              <p className="font-mono text-xs uppercase tracking-widest text-faint">
-                {"//"} elsewhere
-              </p>
+            <Surface>
+              <CardLabel>elsewhere</CardLabel>
               <div className="mt-5 flex flex-col gap-1">
                 {socials.map((social) => {
                   const Icon = socialIcons[social.icon];
@@ -66,12 +67,10 @@ export default function ContactPage() {
                   );
                 })}
               </div>
-            </div>
+            </Surface>
 
-            <div className="rounded-2xl border border-border bg-surface/60 p-6">
-              <p className="font-mono text-xs uppercase tracking-widest text-faint">
-                {"//"} good to know
-              </p>
+            <Surface>
+              <CardLabel>good to know</CardLabel>
               <dl className="mt-5 space-y-4">
                 <Row label="Timezone">
                   {siteConfig.location} · {siteConfig.timezoneLabel}
@@ -82,12 +81,12 @@ export default function ContactPage() {
                 </Row>
                 <Row label="Status">
                   <span className="inline-flex items-center gap-2">
-                    <span className="size-1.5 animate-pulse-glow rounded-full bg-accent" />
+                    <StatusDot />
                     Open to opportunities
                   </span>
                 </Row>
               </dl>
-            </div>
+            </Surface>
           </Reveal>
         </div>
       </section>

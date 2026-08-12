@@ -8,6 +8,7 @@ import { Terminal, type TerminalLine } from "@/components/ui/terminal";
 import { TechLogo } from "@/components/ui/tech-logo";
 import { siteConfig } from "@/lib/data/site";
 import { marqueeStack } from "@/lib/data/stack";
+import { StatusDot } from "@/components/ui/status-dot";
 
 const heroLines: TerminalLine[] = [
   { prompt: "$", text: "whoami" },
@@ -28,7 +29,7 @@ export function Hero() {
       <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/50 px-3 py-1 font-mono text-xs text-muted backdrop-blur">
-            <span className="size-1.5 animate-pulse-glow rounded-full bg-accent" />
+            <StatusDot />
             available for opportunities · {siteConfig.timezoneLabel}
           </span>
 
