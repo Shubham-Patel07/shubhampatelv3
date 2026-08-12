@@ -60,29 +60,32 @@ export function Bento() {
           </BentoCard>
         </Reveal>
 
-        {/* Globe — full, centered */}
+        {/* Globe — bottom-anchored half globe */}
         <Reveal className="md:col-span-2" delay={0.05}>
-          <BentoCard className="relative flex h-full min-h-[18rem] flex-col overflow-hidden">
-            <CardLabel>location</CardLabel>
-            <div className="relative flex flex-1 items-center justify-center py-4">
-              {/* soft glow behind the globe */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-8 rounded-full opacity-60 blur-3xl"
-                style={{
-                  background:
-                    "radial-gradient(circle, color-mix(in oklab, var(--accent) 16%, transparent), transparent 70%)",
-                }}
-              />
-              <div className="relative aspect-square w-full max-w-[15rem]">
-                <Globe />
-              </div>
-            </div>
-            <div>
-              <p className="font-display text-lg font-semibold">Based in India</p>
+          <BentoCard className="relative flex h-full min-h-[22rem] flex-col overflow-hidden">
+            <div className="relative z-10">
+              <CardLabel>location</CardLabel>
+              <p className="mt-4 font-display text-lg font-semibold">
+                Based in India
+              </p>
               <p className="font-mono text-xs text-faint">
                 working across timezones · drag to spin
               </p>
+            </div>
+
+            {/* soft glow under the globe */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -bottom-10 left-1/2 h-40 w-[110%] -translate-x-1/2 rounded-[100%] opacity-70 blur-2xl"
+              style={{
+                background:
+                  "radial-gradient(circle, color-mix(in oklab, var(--accent) 22%, transparent), transparent 70%)",
+              }}
+            />
+            {/* Sized/offset so the north pole clears the copy above and India
+                stays well inside the bottom crop. */}
+            <div className="absolute bottom-0 left-1/2 aspect-square w-[92%] -translate-x-1/2 translate-y-[26%]">
+              <Globe />
             </div>
           </BentoCard>
         </Reveal>

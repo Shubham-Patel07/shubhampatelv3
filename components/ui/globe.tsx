@@ -18,15 +18,17 @@ type Vec3 = [number, number, number];
 const LAND_THRESHOLD = 110;
 const INDIA_LAT = 17.9689;
 const INDIA_LNG = 79.5941;
-const TILT = -0.42; // lean the north pole toward the viewer
+const TILT = 0.45; // positive leans the north pole toward the viewer
 
+// Right-handed and NOT mirrored: +x is east, +y is north, +z faces the viewer.
+// (Putting cos(lng) on x instead flips east/west and reverses the continents.)
 function latLngToVec3(latDeg: number, lngDeg: number): Vec3 {
   const lat = (latDeg * Math.PI) / 180;
   const lng = (lngDeg * Math.PI) / 180;
   return [
-    Math.cos(lat) * Math.cos(lng),
-    Math.sin(lat),
     Math.cos(lat) * Math.sin(lng),
+    Math.sin(lat),
+    Math.cos(lat) * Math.cos(lng),
   ];
 }
 
@@ -59,9 +61,10 @@ function buildLandPoints(): Promise<Vec3[]> {
       };
 
       const pts: Vec3[] = [];
-      // Skip the poles: Antarctica's solid band + longitude convergence make an
-      // ugly detached swirl. Real continents live comfortably within this range.
-      for (let lat = -60; lat <= 78; lat += 1.7) {
+      // Skip the far south: Antarctica's solid band + longitude convergence make
+      // an ugly detached swirl. The north runs higher — with the pole tilted
+      // toward the viewer, cutting early would leave a bald patch over Greenland.
+      for (let lat = -60; lat <= 83; lat += 1.7) {
         const latR = (lat * Math.PI) / 180;
         const step = 1.7 / Math.max(Math.cos(latR), 0.2);
         for (let lng = -180; lng < 180; lng += step) {
@@ -129,6 +132,7 @@ export function Globe({ className }: { className?: string }) {
       const cosA = Math.cos(a);
       const sinA = Math.sin(a);
 
+      // Spin about the polar axis, then tilt about the screen-horizontal axis.
       const project = ([x, y, z]: Vec3) => {
         const rx = x * cosA + z * sinA;
         const rz = -x * sinA + z * cosA;
