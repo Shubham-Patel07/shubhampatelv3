@@ -34,8 +34,8 @@ export function Hero() {
           </span>
 
           <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-[4.2rem]">
-            Software engineer who builds it — and{" "}
-            <ShimmerText>runs it in production.</ShimmerText>
+            {siteConfig.taglineLead}{" "}
+            <ShimmerText>{siteConfig.taglineAccent}</ShimmerText>
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">

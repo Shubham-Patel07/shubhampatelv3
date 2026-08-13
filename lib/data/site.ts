@@ -1,10 +1,18 @@
+// Authored in two clauses because the hero animates only the second half with
+// <ShimmerText>, and a flat string can't be partially wrapped in a component.
+// `tagline` is the joined form for every plain-text consumer (footer, about).
+const taglineLead = "Software engineer who builds it and";
+const taglineAccent = "runs it in production.";
+
 export const siteConfig = {
   name: "Shubham Patel",
   initials: "SP",
   role: "Software Engineer",
   // Range shown as supporting proof, not the headline identity.
   disciplines: ["Backend", "Distributed Systems", "Cloud", "DevOps / SRE"],
-  tagline: "Software engineer who builds it — and runs it in production.",
+  taglineLead,
+  taglineAccent,
+  tagline: `${taglineLead} ${taglineAccent}`,
   description:
     "Software engineer building resilient backends and distributed systems — and the cloud infrastructure that keeps them running. M.Tech CSE @ NIT Warangal.",
   location: "India",
