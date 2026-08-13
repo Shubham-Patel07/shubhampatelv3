@@ -1,20 +1,23 @@
-// Authored in two clauses because the hero animates only the second half with
-// <ShimmerText>, and a flat string can't be partially wrapped in a component.
-// `tagline` is the joined form for every plain-text consumer (footer, about).
-const taglineLead = "Software engineer who builds it and";
-const taglineAccent = "runs it in production.";
+const name = "Shubham Patel";
+
+// One plain string — no lead/accent split. The hero's shimmer sits on the role
+// now, not on half of this sentence, so nothing needs to wrap part of it.
+const tagline = "I turn code into reliable systems.";
 
 export const siteConfig = {
-  name: "Shubham Patel",
+  name,
   initials: "SP",
   role: "Software Engineer",
   // Range shown as supporting proof, not the headline identity.
   disciplines: ["Backend", "Distributed Systems", "Cloud", "DevOps / SRE"],
-  taglineLead,
-  taglineAccent,
-  tagline: `${taglineLead} ${taglineAccent}`,
-  description:
-    "Software engineer building resilient backends and distributed systems — and the cloud infrastructure that keeps them running. M.Tech CSE @ NIT Warangal.",
+  // Footer and the About header use this bare. Both deliberately omit the name:
+  // they already sit under the `shubham.patel()` wordmark or on his own page.
+  tagline,
+  // Hero subhead and the global meta/OpenGraph description. Opens with the
+  // tagline rather than restating it, so the promise the headline no longer
+  // carries lands immediately under it. Kept near ~160 chars so search results
+  // don't truncate it, and the M.Tech clause earns its place there.
+  description: `${tagline} Backend, distributed systems, and the cloud infrastructure underneath them. I design for how things fail. M.Tech CSE @ NIT Warangal.`,
   location: "India",
   timezoneLabel: "IST · UTC+5:30",
   timezone: "Asia/Kolkata",
