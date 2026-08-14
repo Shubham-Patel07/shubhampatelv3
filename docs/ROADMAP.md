@@ -16,7 +16,7 @@ phase numbering is written down.
 | 3 | Home page — hero, selected work, bento, writing teaser, CTA, globe | done |
 | 4 | Projects index + case studies | done — metrics still `[verify]` |
 | 5 | About & Contact | done — timeline content still `[verify]` |
-| 6 | Writing (MDX blog) | done — no real posts yet |
+| 6 | Writing (MDX blog) | done — first real post live |
 | 7a | Dashboard — live GitHub stats + contribution graph | done |
 | 7b | Contributions page | done |
 
@@ -48,6 +48,13 @@ named as **strings** in `next.config.ts` — an imported function will not work.
 
 `content/writing/sample-post.mdx` is a scaffold documenting the format, kept as
 a draft so it never appears publicly. Delete it once real posts exist.
+
+**Published so far:** `secrets-that-survive-the-build.mdx` (Security, 2026-08-14)
+— three ways a secret ends up in an image or a repo despite the right tool being
+used, built on the WrongSecrets challenges Shubham actually authored (OWASP PRs
+#1790, #1668, #1452). Every claim in it is traceable to those PRs or to public
+Docker/Sealed Secrets behaviour; nothing about his own work is asserted beyond
+what the merged PRs show.
 
 ## Responsive
 
