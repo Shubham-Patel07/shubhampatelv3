@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/ui/page-header";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { Magnetic } from "@/components/ui/magnetic";
-import { TechLogo } from "@/components/ui/tech-logo";
+import { StackIcon } from "@/components/ui/stack-icon";
 import { Timeline } from "@/components/about/timeline";
 import { timeline, principles } from "@/lib/data/experience";
 import { stackGroups } from "@/lib/data/stack";
@@ -17,25 +17,6 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "From backend and distributed systems to the cloud infrastructure underneath — how I build, ship, and operate software end to end.",
-};
-
-/** Maps a stack item to a generated glyph key where one exists. */
-const iconKey: Record<string, string> = {
-  Java: "java",
-  AWS: "aws",
-  Python: "python",
-  Go: "go",
-  "Spring Boot": "springboot",
-  Kubernetes: "kubernetes",
-  Docker: "docker",
-  Terraform: "terraform",
-  OpenShift: "openshift",
-  Linux: "linux",
-  Prometheus: "prometheus",
-  Grafana: "grafana",
-  Helm: "helm",
-  Jenkins: "jenkins",
-  "GitHub Actions": "githubactions",
 };
 
 export default function AboutPage() {
@@ -112,10 +93,7 @@ export default function AboutPage() {
                       key={item}
                       className="flex items-center gap-2.5 text-sm text-muted"
                     >
-                      <TechLogo
-                        name={iconKey[item]}
-                        className="h-4 w-auto text-faint"
-                      />
+                      <StackIcon name={item} className="text-faint" />
                       {item}
                     </li>
                   ))}

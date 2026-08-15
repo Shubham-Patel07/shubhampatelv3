@@ -42,6 +42,7 @@ const WANTED = {
   java: "fa:java",
   go: "go",
   python: "python",
+  bash: "gnubash",
   springboot: "springboot",
   kubernetes: "kubernetes",
   aws: "fa:aws", // Simple Icons has no Amazon/AWS mark
@@ -50,9 +51,13 @@ const WANTED = {
   openshift: "redhatopenshift",
   prometheus: "prometheus",
   grafana: "grafana",
+  // "ELK / Kibana" in the stack list. Elastic Stack is the current name for the
+  // ELK trio, so it's the one mark that covers the whole entry.
+  elasticstack: "elasticstack",
   helm: "helm",
   jenkins: "jenkins",
   githubactions: "githubactions",
+  gitlab: "gitlab",
   linux: "linux",
 };
 
