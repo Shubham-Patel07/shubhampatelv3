@@ -27,10 +27,10 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Initialise CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@v4
         with:
           # One language covers the repo: CodeQL treats TS and JS as a single
           # analysis unit, and there is nothing else compiled here.
@@ -40,6 +40,6 @@ jobs:
       # No build step. CodeQL analyses JS/TS from source, and `next build`
       # would only add Turbopack output that isn't what we want scanned.
       - name: Analyze
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@v4
         with:
           category: "/language:javascript-typescript"
