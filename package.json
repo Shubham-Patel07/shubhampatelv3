@@ -34,15 +34,15 @@
   "devDependencies": {
     "@iconify-json/fa6-brands": "^1.2.6",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitest/coverage-v8": "^4.1.10",
-    "eslint": "^9",
-    "eslint-config-next": "16.3.0",
+    "eslint": "^10",
+    "eslint-config-next": "16.3.1",
     "simple-icons": "^16.28.0",
     "tailwindcss": "^4",
-    "typescript": "^5",
+    "typescript": "^7",
     "vitest": "^4.1.10"
   }
 }
