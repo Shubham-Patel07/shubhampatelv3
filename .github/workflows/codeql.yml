@@ -1,0 +1,45 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Static analysis finds things that were already merged, because the rules
+  # change even when the code doesn't. A weekly run catches those; without it
+  # the repo only ever gets scanned by whatever ruleset existed on merge day.
+  schedule:
+    - cron: "17 4 * * 1"
+
+concurrency:
+  group: codeql-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Writing the results back to the Security tab is the whole point.
+      security-events: write
+      actions: read
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Initialise CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          # One language covers the repo: CodeQL treats TS and JS as a single
+          # analysis unit, and there is nothing else compiled here.
+          languages: javascript-typescript
+          queries: security-and-quality
+
+      # No build step. CodeQL analyses JS/TS from source, and `next build`
+      # would only add Turbopack output that isn't what we want scanned.
+      - name: Analyze
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:javascript-typescript"

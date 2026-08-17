@@ -1,0 +1,43 @@
+version: 2
+
+# Grouped on purpose. Ungrouped, this repo would open roughly a dozen PRs a week
+# — Next, React, Tailwind, ESLint and the type packages all move independently —
+# and a solo repo with a permanently full PR tab reads as abandoned, not
+# maintained. One grouped PR per ecosystem per week is reviewable.
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      # Framework upgrades change behaviour and deserve their own review.
+      next:
+        patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      # Everything else is routine and can land together.
+      dev-dependencies:
+        dependency-type: development
+      production:
+        dependency-type: production
+        exclude-patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+
+  # Actions pinned by major tag still drift; this is what keeps CI and CodeQL
+  # from silently running a deprecated runner.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns:
+          - "*"

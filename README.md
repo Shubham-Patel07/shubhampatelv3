@@ -10,6 +10,7 @@
 <br />
 
 [![CI](https://github.com/Shubham-Patel07/shubhampatelv3/actions/workflows/ci.yml/badge.svg)](https://github.com/Shubham-Patel07/shubhampatelv3/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/Shubham-Patel07/shubhampatelv3/actions/workflows/codeql.yml/badge.svg)](https://github.com/Shubham-Patel07/shubhampatelv3/actions/workflows/codeql.yml)
 [![License](https://img.shields.io/badge/license-all%20rights%20reserved-6b7280?style=flat-square)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-16-0b0d11?style=flat-square&logo=nextdotjs&logoColor=white)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React-19-0b0d11?style=flat-square&logo=react&logoColor=34D399)](https://react.dev)
@@ -167,8 +168,19 @@ npm run dev          # dev server
 npm run build        # production build
 npm start            # serve the production build
 npm run lint         # eslint
+npm test             # vitest, once
+npm run test:watch   # vitest, watching
+npm run test:coverage
 npm run gen:icons    # regenerate lib/data/tech-icons.ts from the icon sets
 ```
+
+The suite asserts the claims this README makes rather than the framework's
+behaviour: that `lib/github.ts` resolves to `null` or a status on every failure
+path instead of throwing, that *"not configured"* stays distinguishable from
+*"request failed"*, that drafts stay out of the index while remaining reachable
+by URL, and that every entry in `lib/data/stack.ts` still resolves to a glyph.
+It runs in CI with **no credentials**, which is what keeps the no-token path
+genuinely tested instead of skipped.
 
 `scripts/responsive-shots.sh <route> <out.png> 390 768 1024` screenshots a route
 at several widths at once.
@@ -197,6 +209,7 @@ lib/
   data/              all copy and content, kept out of components
   github.ts          GitHub API layer; never throws
   writing.ts         filesystem-backed post index
+tests/               vitest — the README's claims, asserted
 docs/
   ROADMAP.md         build phases and the house rules worth not rediscovering
 scripts/             icon generation, responsive screenshots

@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   verify:
-    name: Lint, typecheck & build
+    name: Lint, typecheck, test & build
     runs-on: ubuntu-latest
 
     steps:
@@ -38,6 +38,12 @@ jobs:
 
       - name: Typecheck
         run: npx tsc --noEmit
+
+      # Also runs without credentials. tests/github.test.ts deletes
+      # GITHUB_TOKEN before each case precisely so the "no-token" path is tested
+      # rather than accidentally skipped on a machine that happens to have one.
+      - name: Test
+        run: npm run test:coverage
 
       # No GITHUB_TOKEN on purpose. lib/github.ts resolves to null or a status
       # instead of throwing, so the build must succeed without credentials —

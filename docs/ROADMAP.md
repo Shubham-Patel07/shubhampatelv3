@@ -23,6 +23,9 @@ phase numbering is written down.
 All phases are complete. Remaining work is content, tracked as GitHub issues
 #10–#13 (case-study metrics, employment history, real blog posts, device QA).
 
+Since then, outside the phase numbering: a Vitest suite, CodeQL and Dependabot —
+see **Testing** and **Security scanning** below.
+
 > **Parked:** [FREELANCE-PIVOT.md](FREELANCE-PIVOT.md) — analysis for
 > repositioning the site from a job-seeking portfolio to a freelance brand.
 > **On hold, not approved work.** Don't start on it without reopening the four
@@ -116,6 +119,57 @@ Heatmap colors are the `--heat-0..4` tokens in `globals.css`: one hue, five
 steps, `heat-0` neutral so an empty day never reads as a low count. The dark
 steps are chosen against the dark surface, not an inversion of the light ones.
 
+## Testing (Vitest)
+
+`npm test` runs Vitest once; `test:watch` and `test:coverage` are the other two.
+CI runs `test:coverage` between the typecheck and the build, **with no
+credentials** — same reason the build step has none.
+
+**What's worth testing here is the claims, not the framework.** The suite pins
+the four things the README asserts and nothing else was enforcing: `lib/github.ts`
+resolving to `null`/a status on every failure path rather than throwing (a throw
+doesn't blank a panel — `/dashboard` is prerendered, so it fails the *build*),
+`no-token` staying distinct from `error`, drafts staying out of the index while
+still resolving by URL, and every `stackGroups` entry resolving to a glyph.
+
+Three things that cost time to discover:
+
+1. **The config must be `vitest.config.mts`, not `.ts`.** `package.json` has no
+   `"type": "module"`, so Node loads a `.ts` config through the CJS path and
+   Vitest 4 dies with `ERR_REQUIRE_ESM` on `std-env`. The `.mts` extension is
+   already in the tsconfig `include` list.
+2. **Coverage `include` takes globs, not paths.** An exact filename with no
+   wildcard matches nothing and the file silently vanishes from the report
+   rather than erroring.
+3. **`components/ui/stack-icon.tsx` never appears in coverage** under any glob,
+   though every other file in `components/ui/` does. It's the only one a test
+   file imports directly. It *is* exercised — 28 render assertions — and you can
+   see it indirectly, because `tech-logo.tsx` only reaches 75% by way of
+   `StackIcon` rendering it. Don't re-litigate this; it's a v8 reporting
+   artifact, not a hole in the suite.
+
+Tests delete `GITHUB_TOKEN` in a `beforeEach`. Without that, a developer with a
+real token in their shell tests the *opposite* branch of the no-token path and
+the case passes for the wrong reason.
+
+## Security scanning
+
+`.github/workflows/codeql.yml` runs CodeQL (`security-and-quality`) on push, PR
+and weekly. The schedule isn't padding: the rules change even when the code
+doesn't, so without it the repo is only ever scanned by whatever ruleset existed
+on merge day.
+
+`.github/dependabot.yml` covers npm and github-actions, **grouped**. Ungrouped it
+opens roughly a dozen PRs a week and a permanently full PR tab on a solo repo
+reads as abandoned, not maintained. Next/React are their own group because a
+framework major deserves its own review.
+
+Badges must stay backed by something that actually runs. Do not add a
+self-asserted quality badge: OpenSSF Scorecard reports `invalid repo path` until
+the workflow exists, and Snyk renders a green `monitored` for this repo with
+nothing imported and no scan ever run — that's the failure mode to avoid, not a
+template.
+
 ## Conventions worth not rediscovering
 
 - **Design tokens** live in `app/globals.css` as CSS variables, surfaced to
@@ -175,7 +229,7 @@ devDependencies only; paths are baked in so nothing ships at runtime.
 
 **Two sources, deliberately — neither covers the stack alone:**
 
-- `simple-icons` (CC0) is the default and covers 13 of 15.
+- `simple-icons` (CC0) is the default and covers 16 of 18.
 - `@iconify-json/fa6-brands` (Font Awesome Free, **CC BY 4.0** — attribution is
   in the generated file's header) supplies `aws` and `java`, which Simple Icons
   dropped over trademark policy.
@@ -185,5 +239,25 @@ Terraform, OpenShift, Prometheus, Grafana and Helm. (Devicon covers 14/15 —
 everything but OpenShift — if a single source is ever wanted.)
 
 `MarqueeItem.icon` stays optional so a missing mark degrades to the name alone.
+
+**The Toolkit on `/about` mixes two icon systems on purpose, and it can't not.**
+`stackGroups` holds 28 items, but only 18 of them are *products* with a brand
+mark. The other 10 are *concepts* — "Microservices", "System Design",
+"SLIs / SLOs" — and no logo for those exists or ever will. Before hunting for
+one: `amazoncloudwatch` is not in either package (Simple Icons dropped the
+Amazon marks), so CloudWatch is a concept entry too.
+
+`components/ui/stack-icon.tsx` resolves the split: `brandKey` → `TechLogo`,
+`conceptIcon` → a generic lucide glyph. Both maps are keyed on the **exact**
+display string from `stackGroups`, so renaming an item there surfaces as a
+missing icon instead of silently mapping to the wrong one. Never fill a concept
+gap by borrowing an unrelated vendor's mark — it claims a tool he doesn't use.
+
+This is the one place the "don't mix stroked lucide with filled brand glyphs"
+rule is deliberately broken, so it pays the compensation the rule exists for:
+concept icons render at `size-[1.0625rem]` (17px) against `TechLogo`'s 16px, at
+full `strokeWidth`, because an outline carries less ink and reads a size smaller
+at identical dimensions. Verified at 390 and 1024 — drop the compensation and
+the stroked rows visibly shrink next to Spring Boot and Prometheus.
 Render logos with `h-* w-auto`, never `size-*`: AWS is a 640×512 logotype and a
 square box letterboxes it a quarter smaller than the glyphs beside it.

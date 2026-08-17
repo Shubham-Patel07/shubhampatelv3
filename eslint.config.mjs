@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vitest's HTML/lcov report. Gitignored, but flat config doesn't read
+    // .gitignore, so without this `npm run lint` starts reporting on generated
+    // files the moment anyone runs coverage locally.
+    "coverage/**",
   ]),
 ]);
 
